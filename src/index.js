@@ -1,20 +1,31 @@
 
 import Phaser from "phaser";
 
+import PlayScene from './scenes/Play';
+
+const WIDTH = 1280;
+const HEIGHT = 600;
+
+const SHARED_CONFIG = {
+  width: WIDTH,
+  height: HEIGHT,
+}
+
+const Scenes = [PlayScene];
+const createScene = scene => new scene(SHARED_CONFIG);
+const initScenes = () => Scenes.map(createScene);
+
 const config = {
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
+  ...SHARED_CONFIG,
+  pixelArt: true,
   physics: {
     default: 'arcade',
     arcade: {
-      gravity: { y: 200 }
+      debug: true,
     }
   },
-  scene: {
-    preload: preload,
-    create: create
-  }
+  scene: initScenes()
 };
 
 new Phaser.Game(config);
