@@ -11,7 +11,7 @@ class Play extends Phaser.Scene {
         const layers = this.createLayer(map);
         const player = this.createPlayer();
 
-        this.physics.add.collider(player, layers.platformsColliders);
+        player.addCollider(layers.platformsColliders);
     }
 
     //Custom methods
