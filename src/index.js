@@ -13,6 +13,7 @@ const SHARED_CONFIG = {
   mapOffset: MAP_WIDTH > WIDTH ? MAP_WIDTH - WIDTH : 0,
   width: WIDTH,
   height: HEIGHT,
+  zoomFactor: 1.5,
 }
 
 const Scenes = [PreloadScene, PlayScene];
