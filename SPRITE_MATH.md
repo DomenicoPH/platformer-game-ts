@@ -6,4 +6,6 @@
     - math:               1536 / 24 = 64
     - each frame:         64 * 38 px
 
+    - idle Animation:       frames 0 to 8
     - Running Animation:    frames 11 to 16
+    - jumping Animation:    frames 17 to 23
