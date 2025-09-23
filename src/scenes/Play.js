@@ -11,7 +11,7 @@ class Play extends Phaser.Scene {
         const map = this.createMap();
         const layers = this.createLayer(map);
         const playerZones = this.getPlayerZones(layers.playerZones);
-        const player = this.createPlayer(playerZones);
+        const player = this.createPlayer(playerZones.start);
 
         this.createPlayerColliders(player, {
             colliders: {
@@ -19,7 +19,7 @@ class Play extends Phaser.Scene {
             }
         });
 
-        this.createEndOfLevel(playerZones.end);
+        this.createEndOfLevel(playerZones.end, player);
         this.setupFollowupCamera(player);
     };
 
@@ -45,7 +45,7 @@ class Play extends Phaser.Scene {
         return { environment, platforms, platformsColliders, playerZones }
     }
 
-    createPlayer({start}){
+    createPlayer(start){
         return new Player(this, start.x, start.y);
     }
 
@@ -69,11 +69,16 @@ class Play extends Phaser.Scene {
         }
     }
 
-    createEndOfLevel(end){
-        this.physics.add.sprite(end.x, end.y, 'end')
+    createEndOfLevel(end, player){
+        const endOfLevel = this.physics.add.sprite(end.x, end.y, 'end')
             .setAlpha(0)
             .setOrigin(0.5, 1)
             .setSize(5, 200);
+
+        const eolOverlap = this.physics.add.overlap(player, endOfLevel, () => {
+            eolOverlap.active = false;
+            console.log('end of level');
+        })
     }
 
 }
