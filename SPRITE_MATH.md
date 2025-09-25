@@ -11,11 +11,11 @@
     - Running Animation:    frames 11 to 16
     - jumping Animation:    frames 17 to 23
 
-## assets/enemy/enemy_sheet.png  
+## assets/enemy/enemy_sheet.png  (Birdman)
 
-    - image size:
-    - number of frames:
-    - math:
-    - each frame:
+    - image size:           1792 * 64 px
+    - number of frames:     28
+    - math:                 1792 / 24 = 64
+    - each frame:           64 * 64 px
 
     - walk Animation:
