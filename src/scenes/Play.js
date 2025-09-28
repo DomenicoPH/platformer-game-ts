@@ -31,34 +31,6 @@ class Play extends Phaser.Scene {
 
         this.createEndOfLevel(playerZones.end, player);
         this.setupFollowupCamera(player);
-
-        this.plotting = false;
-        this.graphics = this.add.graphics();
-        this.line = new Phaser.Geom.Line();
-        this.graphics.lineStyle(1, 0x00ff00);
-
-        this.input.on('pointerdown', this.startDrawing, this);
-        this.input.on('pointerup', (pointer) => this.finishDrawing(pointer, layers.platforms), this);
-    };
-
-    drawDebug(layer){
-        const collidingTileColor = new Phaser.Display.Color(243, 134, 48, 255);
-        layer.renderDebug(this.graphics, {
-            tileColor: null,
-            collidingTileColor,
-        })
-    }
-
-    startDrawing(pointer){
-        if(this.tileHits && this.tileHits.length > 0){
-            this.tileHits.forEach(tile => {
-                tile.index !== -1 && tile.setCollision(false)
-            })
-        }
-
-        this.plotting = true;
-        this.line.x1 = pointer.worldX;
-        this.line.y1 = pointer.worldY;
     };
 
     finishDrawing(pointer, layer){
@@ -156,16 +128,6 @@ class Play extends Phaser.Scene {
             eolOverlap.active = false;
             console.log('end of level');
         })
-    }
-
-    update(){
-        if(this.plotting){
-            const pointer = this.input.activePointer;
-            this.line.x2 = pointer.worldX
-            this.line.y2 = pointer.worldY
-            this.graphics.clear();
-            this.graphics.strokeLineShape(this.line);
-        }
     }
 
 }
